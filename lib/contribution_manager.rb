@@ -1,10 +1,6 @@
 require 'date'
 
 class ContributionManager
-  def initialize(raw_contributions)
-    _import(raw_contributions)
-  end
-
   def append(raw_contributions)
     _import(raw_contributions)
   end
