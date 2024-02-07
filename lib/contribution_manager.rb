@@ -107,14 +107,15 @@ class ContributionManager
   end
 
   def _distribution(counts)
-    boundaries = (1..4).map {|e| [e, (counts.max.to_f / 4.0 * e).floor]}.to_h
-    counts
+    thresholds = (1..4).map {|e| [e, (counts.max.to_f / 4.0 * e).floor]}.to_h
+    distribution = counts
       .select{|count| count != 0}
       .inject(Array.new(4, 0)) do |result, count|
-        boundary_index = boundaries.select{|k, v| count > v}.keys.max || 0
-        result[boundary_index] += 1
+        threshold_index = thresholds.select{|k, v| count > v}.keys.max || 0
+        result[threshold_index] += 1
         result
     end
+    return distribution, thresholds
   end
 
   def _streaks(contributions)

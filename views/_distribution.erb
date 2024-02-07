@@ -1,0 +1,8 @@
+<ul>
+  <% thresholds.each_with_index do |threshold, index| %>
+    <li>
+      <%= "#{index > 0 ? thresholds[index] + 1 : '0'}-#{threshold[1]}" %>
+      : <%= distribution[index] %>
+    </li>
+  <% end %>
+</ul>
