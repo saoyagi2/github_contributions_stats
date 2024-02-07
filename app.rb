@@ -9,7 +9,7 @@ get '/' do
 
   github_api = GithubApi.new
 
-  @years = github_api.get_years["data"]["user"]["contributionsCollection"]["contributionYears"]
+  @years = github_api.get_years
 
   @all_contributions = ContributionManager.new
   @contributions_by_years = {}

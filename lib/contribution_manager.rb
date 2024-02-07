@@ -75,37 +75,29 @@ class ContributionManager
 
   private
 
-  def _import(raw_contributions)
-    flat_contributions = raw_contributions["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-      .map{|e| e["contributionDays"]}
-      .flatten
-
+  def _import(contributions)
     @contributions_by_day ||= {}
-    @contributions_by_day.merge!(
-      flat_contributions
-        .map{|e| [DateTime.parse(e["date"]).strftime("%Y%m%d"), e["contributionCount"]]}
-        .to_h
-    )
+    @contributions_by_day.merge!(contributions)
 
     @contributions_by_week ||= {}
     @contributions_by_week.merge!(
-      flat_contributions
-        .group_by{|e| DateTime.parse(e["date"]).strftime("%Y%U")}
-        .transform_values{|v| v.map{|e| e["contributionCount"]}.sum}
+      contributions
+        .group_by{|date, count| DateTime.parse(date).strftime("%Y%U")}
+        .transform_values{|v| v.map{|e| e[1]}.sum}
     )
 
     @contributions_by_month ||= {}
     @contributions_by_month.merge!(
-      flat_contributions
-        .group_by{|e| DateTime.parse(e["date"]).strftime("%Y%m")}
-        .transform_values{|v| v.map{|e| e["contributionCount"]}.sum}
+      contributions
+        .group_by{|date, count| DateTime.parse(date).strftime("%Y%m")}
+        .transform_values{|v| v.map{|e| e[1]}.sum}
     )
 
     @contributions_by_year ||= {}
     @contributions_by_year.merge!(
-      flat_contributions
-        .group_by{|e| DateTime.parse(e["date"]).strftime("%Y")}
-        .transform_values{|v| v.map{|e| e["contributionCount"]}.sum}
+      contributions
+        .group_by{|date, count| DateTime.parse(date).strftime("%Y")}
+        .transform_values{|v| v.map{|e| e[1]}.sum}
     )
 
     @streaks_by_day = _streaks(@contributions_by_day)
