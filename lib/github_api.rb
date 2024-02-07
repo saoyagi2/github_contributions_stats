@@ -1,4 +1,8 @@
 class GithubApi
+  def initialize(username)
+    @username = username
+  end
+
   def get_years
     response = File.open("years.json") {|f| JSON.load(f)}
     response["data"]["user"]["contributionsCollection"]["contributionYears"]
