@@ -48,6 +48,54 @@ class ContributionManager
     _distribution(@contributions_by_year.values)
   end
 
+  def contributed_days
+    @contributions_by_day.select{|date, count| count != 0}.count
+  end
+
+  def contributed_weeks
+    @contributions_by_week.select{|date, count| count != 0}.size
+  end
+
+  def contributed_months
+    @contributions_by_month.select{|date, count| count != 0}.size
+  end
+
+  def contributed_years
+    @contributions_by_year.select{|date, count| count != 0}.size
+  end
+
+  def average_contributions_per_contributed_days
+    if contributed_days != 0
+      (total_contributions.to_f / contributed_days.to_f).round(2)
+    else
+      nil
+    end
+  end
+
+  def average_contributions_per_contributed_weeks
+    if contributed_weeks != 0
+      (total_contributions.to_f / contributed_weeks.to_f).round(2)
+    else
+      nil
+    end
+  end
+
+  def average_contributions_per_contributed_months
+    if contributed_months != 0
+      (total_contributions.to_f / contributed_months.to_f).round(2)
+    else
+      nil
+    end
+  end
+
+  def average_contributions_per_contributed_years
+    if contributed_years != 0
+      (total_contributions.to_f / contributed_years.to_f).round(2)
+    else
+      nil
+    end
+  end
+
   def max_streaks_by_day
     @streaks_by_day.max
   end
