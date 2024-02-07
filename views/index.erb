@@ -5,9 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <h1>GitHub contributions statistics</h1>
   <form action="/">
+    <label for="name">Account name:</label>
     <input type="text" name="account" value="<%= @account %>" placeholder="please input GitHub account">
     <input type="submit">
   </form>
+  <hr>
+  <div id="all_contributions">
+    <h2>All contributions statistics</h2>
+    <ul>
+      <li>total contributions: <%= @all_contributions.total_contributions %></li>
+    </ul>
+
+    <h3>by day</h3>
+    <ul>
+      <li>max contributions: <%= @all_contributions.max_contributions_by_day %></li>
+      <li>contribution distribution: <%= @all_contributions.contribution_by_day_distribution %></li>
+      <li>max streaks: <%= @all_contributions.max_streaks_by_day %></li>
+      <li>streak distribution: <%= @all_contributions.streak_by_day_distribution %></li>
+    </ul>
+
+    <h3>by week</h3>
+    <ul>
+      <li>max contributions: <%= @all_contributions.max_contributions_by_week %></li>
+      <li>contribution distribution: <%= @all_contributions.contribution_by_week_distribution %></li>
+      <li>max streaks: <%= @all_contributions.max_streaks_by_week %></li>
+      <li>streak distribution: <%= @all_contributions.streak_by_week_distribution %></li>
+    </ul>
+
+    <h3>by month</h3>
+    <ul>
+      <li>max contributions: <%= @all_contributions.max_contributions_by_month %></li>
+      <li>contribution distribution: <%= @all_contributions.contribution_by_month_distribution %></li>
+      <li>max streaks: <%= @all_contributions.max_streaks_by_month %></li>
+      <li>streak distribution: <%= @all_contributions.streak_by_month_distribution %></li>
+    </ul>
+
+    <h3>by year</h3>
+    <ul>
+      <li>max contributions: <%= @all_contributions.max_contributions_by_year %></li>
+      <li>contribution distribution: <%= @all_contributions.contribution_by_year_distribution %></li>
+      <li>max streaks: <%= @all_contributions.max_streaks_by_year %></li>
+      <li>streak distribution: <%= @all_contributions.streak_by_year_distribution %></li>
+    </ul>
+  </div
+
+  <% @years.each do |year| %>
+    <div id="<%= year%>_contributions">
+      <h2><%= year %> contributions statistics</h2>
+      <ul>
+        <li>total contributions: <%= @contributions_by_years[year].total_contributions %></li>
+      </ul>
+
+      <h3>by day</h3>
+      <ul>
+        <li>max contributions: <%= @contributions_by_years[year].max_contributions_by_day %></li>
+        <li>contribution distribution: <%= @contributions_by_years[year].contribution_by_day_distribution %></li>
+        <li>max streaks: <%= @contributions_by_years[year].max_streaks_by_day %></li>
+        <li>streak distribution: <%= @contributions_by_years[year].streak_by_day_distribution %></li>
+      </ul>
+
+      <h3>by week</h3>
+      <ul>
+        <li>max contributions: <%= @contributions_by_years[year].max_contributions_by_week %></li>
+        <li>contribution distribution: <%= @contributions_by_years[year].contribution_by_week_distribution %></li>
+        <li>max streaks: <%= @contributions_by_years[year].max_streaks_by_week %></li>
+        <li>streak distribution: <%= @contributions_by_years[year].streak_by_week_distribution %></li>
+      </ul>
+
+      <h3>by month</h3>
+      <ul>
+        <li>max contributions: <%= @contributions_by_years[year].max_contributions_by_month %></li>
+        <li>contribution distribution: <%= @contributions_by_years[year].contribution_by_month_distribution %></li>
+        <li>max streaks: <%= @contributions_by_years[year].max_streaks_by_month %></li>
+        <li>streak distribution: <%= @contributions_by_years[year].streak_by_month_distribution %></li>
+      </ul>
+
+      <h3>by year</h3>
+      <ul>
+        <li>max contributions: <%= @contributions_by_years[year].max_contributions_by_year %></li>
+        <li>contribution distribution: <%= @contributions_by_years[year].contribution_by_year_distribution %></li>
+        <li>max streaks: <%= @contributions_by_years[year].max_streaks_by_year %></li>
+        <li>streak distribution: <%= @contributions_by_years[year].streak_by_year_distribution %></li>
+      </ul>
+    </div
+  <% end %>
 </body>
 </html>
