@@ -1,6 +1,13 @@
 require 'date'
 
 class ContributionManager
+  def initialize
+    @contributions_by_day = {}
+    @contributions_by_week = {}
+    @contributions_by_month = {}
+    @contributions_by_year = {}
+  end
+
   def append(raw_contributions)
     _import(raw_contributions)
   end
@@ -42,19 +49,19 @@ class ContributionManager
   end
 
   def max_streaks_by_day
-    @_max_streaks_by_day ||= @streaks_by_day.max
+    @streaks_by_day.max
   end
 
   def max_streaks_by_week
-    @_max_streaks_by_week ||= @streaks_by_week.max
+    @streaks_by_week.max
   end
 
   def max_streaks_by_month
-    @_max_streaks_by_month ||= @streaks_by_month.max
+    @streaks_by_month.max
   end
 
   def max_streaks_by_year
-    @_max_streaks_by_year ||= @streaks_by_year.max
+    @streaks_by_year.max
   end
 
   def streak_by_day_distribution
@@ -76,24 +83,20 @@ class ContributionManager
   private
 
   def _import(contributions)
-    @contributions_by_day ||= {}
     @contributions_by_day.merge!(contributions)
 
-    @contributions_by_week ||= {}
     @contributions_by_week.merge!(
       contributions
         .group_by{|date, count| DateTime.parse(date).strftime("%Y%U")}
         .transform_values{|v| v.map{|e| e[1]}.sum}
     )
 
-    @contributions_by_month ||= {}
     @contributions_by_month.merge!(
       contributions
         .group_by{|date, count| DateTime.parse(date).strftime("%Y%m")}
         .transform_values{|v| v.map{|e| e[1]}.sum}
     )
 
-    @contributions_by_year ||= {}
     @contributions_by_year.merge!(
       contributions
         .group_by{|date, count| DateTime.parse(date).strftime("%Y")}
