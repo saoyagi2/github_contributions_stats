@@ -1,8 +1,12 @@
-<ul>
-  <% thresholds.each_with_index do |threshold, index| %>
-    <li>
-      <%= "#{index > 0 ? thresholds[index] + 1 : '0'}-#{threshold[1]}" %>
-      : <%= distribution[index] %>
-    </li>
-  <% end %>
-</ul>
+<% return if distribution.sum == 0 %>
+<li><%= label %>:
+  <ul>
+    <% thresholds.each_with_index do |threshold, index| %>
+      <% next if threshold[1] == 0 || (index > 0 && threshold[1] == thresholds[index]) %>
+      <li>
+        <%= "#{index > 0 ? thresholds[index] + 1 : 1}-#{threshold[1]}" %>
+        : <%= distribution[index] %>
+      </li>
+    <% end %>
+  </ul>
+</li>
