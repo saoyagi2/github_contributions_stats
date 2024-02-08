@@ -16,6 +16,10 @@ class ContributionManager
     @contributions_by_day.values.sum
   end
 
+  def contributions_by_day
+    @contributions_by_day
+  end
+
   def max_contributions_by_day
     @contributions_by_day.values.max
   end

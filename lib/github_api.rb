@@ -13,7 +13,7 @@ class GithubApi
     response["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
       .map{|e| e["contributionDays"]}
       .flatten
-      .map{|e| [DateTime.parse(e["date"]).strftime("%Y%m%d"), e["contributionCount"]]}
+      .map{|e| [DateTime.parse(e["date"]).strftime("%Y-%m-%d"), e["contributionCount"]]}
       .to_h
   end
 end

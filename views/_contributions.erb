@@ -72,6 +72,8 @@
 <% @years.each do |year| %>
   <div id="<%= year%>_contributions">
     <h2><%= year %> contributions statistics</h2>
+    <div id="cal-heatmap-<%= year %>"></div>
+
     <ul>
       <li>total contributions: <%= @contributions_by_years[year].total_contributions %></li>
     </ul>
@@ -121,5 +123,61 @@
         <%= erb :_distribution, locals: {distribution: distribution, thresholds: thresholds} %>
       </li>
     </ul>
-  </div
+  </div>
 <% end %>
+<script>
+const years = <%= @years.to_json %>;
+const cal_data = <%=
+  @years.map do|year|
+    [year, @contributions_by_years[year].contributions_by_day.map{|date, count| {date: date, count: count}}]
+  end
+  .to_h
+  .to_json
+%>;
+const thresholds = <%=
+  @years.map do |year|
+    distribution, thresholds = @contributions_by_years[year].contribution_by_day_distribution
+    [year, thresholds.values]
+  end
+  .to_h
+  .to_json
+%>;
+
+const cals = {};
+years.forEach(year => {
+  cals[year] = new CalHeatmap();
+  cals[year].paint({
+    itemSelector: '#cal-heatmap-' + year,
+    domain: {
+      type: 'month',
+      gutter: 2,
+      label: {
+        text: 'MMM',
+        position: 'top',
+        textAlign: 'start'
+      }
+    },
+    subDomain: {
+      type: 'ghDay',
+      gutter: 3,
+      radius: 3
+    },
+    range: 12,
+    date:{
+      start: new Date(year, 0, 31)
+    },
+    data: {
+      source: cal_data[year],
+      x: 'date',
+      y: 'count'
+    },
+    scale: {
+      color: {
+        type: 'threshold',
+        range: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+        domain: thresholds[year]
+      }
+    }
+  });
+});
+</script>
