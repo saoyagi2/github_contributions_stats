@@ -4,6 +4,8 @@ require 'sinatra/reloader'
 require_relative 'lib/contribution_manager'
 require_relative 'lib/github_api'
  
+set :show_exceptions, false
+
 get '/' do
   @account = params[:account]
 
