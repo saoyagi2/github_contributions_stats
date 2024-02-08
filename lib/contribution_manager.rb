@@ -53,7 +53,7 @@ class ContributionManager
   end
 
   def contributed_days
-    @contributions_by_day.select{|date, count| count != 0}.count
+    @contributions_by_day.select{|date, count| count != 0}.size
   end
 
   def contributed_weeks
