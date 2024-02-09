@@ -137,23 +137,24 @@ class ContributionManager
   def _import(contributions)
     @contributions_by_day.merge!(contributions)
 
-    @contributions_by_week.merge!(
-      contributions
-        .group_by{|date, count| DateTime.parse(date).strftime("%Y%U")}
-        .transform_values{|v| v.map{|e| e[1]}.sum}
-    )
+    @contributions_by_week = @contributions_by_day
+      .group_by do |date, count|
+        dt = DateTime.parse(date)
+        if dt.strftime("%U") != "00"
+          dt.strftime("%Y%U")
+        else
+          DateTime.parse("#{dt.year - 1}-12-31").strftime("%Y%U")
+        end
+      end
+      .transform_values{|v| v.map{|e| e[1]}.sum}
 
-    @contributions_by_month.merge!(
-      contributions
-        .group_by{|date, count| DateTime.parse(date).strftime("%Y%m")}
-        .transform_values{|v| v.map{|e| e[1]}.sum}
-    )
+    @contributions_by_month = @contributions_by_day
+      .group_by{|date, count| DateTime.parse(date).strftime("%Y%m")}
+      .transform_values{|v| v.map{|e| e[1]}.sum}
 
-    @contributions_by_year.merge!(
-      contributions
-        .group_by{|date, count| DateTime.parse(date).strftime("%Y")}
-        .transform_values{|v| v.map{|e| e[1]}.sum}
-    )
+    @contributions_by_year = @contributions_by_day
+      .group_by{|date, count| DateTime.parse(date).strftime("%Y")}
+      .transform_values{|v| v.map{|e| e[1]}.sum}
 
     @streaks_by_day = _streaks(@contributions_by_day)
     @streaks_by_week = _streaks(@contributions_by_week)
