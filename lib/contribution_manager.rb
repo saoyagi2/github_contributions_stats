@@ -6,6 +6,10 @@ class ContributionManager
     @contributions_by_week = {}
     @contributions_by_month = {}
     @contributions_by_year = {}
+    @streaks_by_day = []
+    @streaks_by_week = []
+    @streaks_by_month = []
+    @streaks_by_year = []
   end
 
   def append(raw_contributions)
