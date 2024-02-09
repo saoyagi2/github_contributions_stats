@@ -1,5 +1,6 @@
 <% return if distribution.sum == 0 %>
-<li><%= label %>:
+<dt><%= label %>:</dt>
+<dd>
   <ul>
     <% thresholds.each_with_index do |threshold, index| %>
       <% next if threshold[1] == 0 || (index > 0 && threshold[1] == thresholds[index]) %>
@@ -9,4 +10,4 @@
       </li>
     <% end %>
   </ul>
-</li>
+</dd>
