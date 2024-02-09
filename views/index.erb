@@ -76,11 +76,11 @@
       <div id="contents">
         <h1>GitHub contributions statistics</h1>
         <form action="/">
-          <label for="account">Account name:</label>
-          <input type="text" id="account" name="account" value="<%= @account %>" placeholder="please input GitHub account">
+          <label for="username">GitHub user name:</label>
+          <input type="text" id="username" name="username" value="<%= @username %>" placeholder="please input GitHub user name">
           <input type="submit">
         </form>
-        <% unless @account.nil? || @account.empty? %>
+        <% unless @username.nil? || @username.empty? %>
           <hr>
           <%= erb :_contributions %>
         <% end %>

@@ -7,10 +7,10 @@ require_relative 'lib/github_api'
 set :show_exceptions, false
 
 get '/' do
-  @account = params[:account]
+  @username = params[:username]
 
-  unless @account.nil? || @account.empty?
-    github_api = GithubApi.new(@account)
+  unless @username.nil? || @username.empty?
+    github_api = GithubApi.new(@username)
 
     @years = github_api.get_years
 
