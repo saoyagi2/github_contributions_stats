@@ -14,7 +14,7 @@
       <dt>max contributions:</dt>
       <dd><%= @all_contributions.max_contributions_by_day %></dd>
       <% distribution, thresholds = @all_contributions.contribution_by_day_distribution %>
-      <%# erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+      <%# erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
       <dt>contributed:</dt>
       <dd><%= @all_contributions.contributed_days %></dd>
@@ -26,7 +26,7 @@
       <dd><%= @all_contributions.max_streaks_by_day %></dd>
 
       <% distribution, thresholds = @all_contributions.streak_by_day_distribution %>
-      <%# erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+      <%# erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
     </dl>
   </section>
 
@@ -37,7 +37,7 @@
       <dd><%= @all_contributions.max_contributions_by_week %></dd>
 
       <% distribution, thresholds = @all_contributions.contribution_by_week_distribution %>
-      <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
       <dt>contributed:</dt>
       <dd><%= @all_contributions.contributed_weeks %></dd>
@@ -49,7 +49,7 @@
       <dd><%= @all_contributions.max_streaks_by_week %></dd>
 
       <% distribution, thresholds = @all_contributions.streak_by_week_distribution %>
-      <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
     </dl>
   </section>
 
@@ -60,7 +60,7 @@
       <dd><%= @all_contributions.max_contributions_by_month %></dd>
 
       <% distribution, thresholds = @all_contributions.contribution_by_month_distribution %>
-      <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
       <dt>contributed:</dt>
       <dd><%= @all_contributions.contributed_months %></dd>
@@ -72,7 +72,7 @@
       <dd><%= @all_contributions.max_streaks_by_month %></dd>
 
       <% distribution, thresholds = @all_contributions.streak_by_month_distribution %>
-      <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
     </dl>
   </section>
 
@@ -83,7 +83,7 @@
       <dd><%= @all_contributions.max_contributions_by_year %></dd>
 
       <% distribution, thresholds = @all_contributions.contribution_by_year_distribution %>
-      <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
       <dt>contributed:</dt>
       <dd><%= @all_contributions.contributed_years %></dd>
@@ -95,7 +95,7 @@
       <dd><%= @all_contributions.max_streaks_by_year %></dd>
 
       <% distribution, thresholds = @all_contributions.streak_by_year_distribution %>
-      <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
     </dl>
   </section>
 </section>
@@ -120,7 +120,7 @@
         <dd><%= @contributions_by_years[year].max_contributions_by_day %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].contribution_by_day_distribution %>
-        <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
         <dt>contributed:</dt>
         <dd><%= @contributions_by_years[year].contributed_days %></dd>
@@ -132,7 +132,7 @@
         <dd><%= @contributions_by_years[year].max_streaks_by_day %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].streak_by_day_distribution %>
-        <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
       </dl>
     </section>
 
@@ -143,7 +143,7 @@
         <dd><%= @contributions_by_years[year].max_contributions_by_week %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].contribution_by_week_distribution %>
-        <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
         <dt>contributed:</dt>
         <dd><%= @contributions_by_years[year].contributed_weeks %></dd>
@@ -155,7 +155,7 @@
         <dd><%= @contributions_by_years[year].max_streaks_by_week %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].streak_by_week_distribution %>
-        <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
       </dl>
     </section>
 
@@ -166,7 +166,7 @@
         <dd><%= @contributions_by_years[year].max_contributions_by_month %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].contribution_by_month_distribution %>
-        <%= erb :_distribution, locals: {label: "contribution distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
 
         <dt>contributed:</dt>
         <dd><%= @contributions_by_years[year].contributed_months %></dd>
@@ -178,7 +178,7 @@
         <dd><%= @contributions_by_years[year].max_streaks_by_month %></dd>
 
         <% distribution, thresholds = @contributions_by_years[year].streak_by_month_distribution %>
-        <%= erb :_distribution, locals: {label: "streak distribution", distribution: distribution, thresholds: thresholds} %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
       </dl>
     </section>
   </section>
