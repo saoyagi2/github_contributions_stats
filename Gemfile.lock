@@ -32,6 +32,7 @@ PLATFORMS
 DEPENDENCIES
   puma
   sinatra
+  sinatra-contrib
   sinatra-reloader
 
 BUNDLED WITH
