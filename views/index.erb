@@ -80,7 +80,7 @@
           <input type="text" id="username" name="username" value="<%= @username %>">
           <input type="submit">
         </form>
-        <% unless @username.nil? || @username.empty? %>
+        <% if @username.present? %>
           <hr>
           <%= erb :_contributions %>
         <% end %>

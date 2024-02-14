@@ -150,15 +150,15 @@ class ContributionManager
           DateTime.parse("#{dt.year - 1}-12-31").strftime("%Y%U")
         end
       end
-      .transform_values{|v| v.map{|e| e[1]}.sum}
+      .transform_values{|v| v.map{|e| e.second}.sum}
 
     @contributions_by_month = @contributions_by_day
       .group_by{|date, count| DateTime.parse(date).strftime("%Y%m")}
-      .transform_values{|v| v.map{|e| e[1]}.sum}
+      .transform_values{|v| v.map{|e| e.second}.sum}
 
     @contributions_by_year = @contributions_by_day
       .group_by{|date, count| DateTime.parse(date).strftime("%Y")}
-      .transform_values{|v| v.map{|e| e[1]}.sum}
+      .transform_values{|v| v.map{|e| e.second}.sum}
 
     @streaks_by_day = _streaks(@contributions_by_day)
     @streaks_by_week = _streaks(@contributions_by_week)
