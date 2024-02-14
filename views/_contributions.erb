@@ -1,0 +1,246 @@
+<section id="all_contributions">
+  <h2>All contributions statistics</h2>
+
+  <section>
+    <dl class="flex">
+      <dt>total contributions:</dt>
+      <dd><%= @all_contributions.total_contributions %></dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>by day</h3>
+    <dl class="flex">
+      <dt>max contributions:</dt>
+      <dd><%= @all_contributions.max_contributions_by_day %></dd>
+      <% distribution, thresholds = @all_contributions.contribution_by_day_distribution %>
+      <%# erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+      <dt>contributed:</dt>
+      <dd><%= @all_contributions.contributed_days %></dd>
+
+      <dt>average contributions per contributed:</dt>
+      <dd><%= @all_contributions.average_contributions_per_contributed_days %></dd>
+
+      <dt>max streaks:</dt>
+      <dd><%= @all_contributions.max_streaks_by_day %></dd>
+
+      <% distribution, thresholds = @all_contributions.streak_by_day_distribution %>
+      <%# erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+    </dl>
+  </section>
+
+  <section>
+    <h3>by week</h3>
+    <dl class="flex">
+      <dt>max contributions:</dt>
+      <dd><%= @all_contributions.max_contributions_by_week %></dd>
+
+      <% distribution, thresholds = @all_contributions.contribution_by_week_distribution %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+      <dt>contributed:</dt>
+      <dd><%= @all_contributions.contributed_weeks %></dd>
+
+      <dt>average contributions per contributed:</dt>
+      <dd><%= @all_contributions.average_contributions_per_contributed_weeks %></dd>
+
+      <dt>max streaks:</dt>
+      <dd><%= @all_contributions.max_streaks_by_week %></dd>
+
+      <% distribution, thresholds = @all_contributions.streak_by_week_distribution %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+    </dl>
+  </section>
+
+  <section>
+    <h3>by month</h3>
+    <dl class="flex">
+      <dt>max contributions:</dt>
+      <dd><%= @all_contributions.max_contributions_by_month %></dd>
+
+      <% distribution, thresholds = @all_contributions.contribution_by_month_distribution %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+      <dt>contributed:</dt>
+      <dd><%= @all_contributions.contributed_months %></dd>
+
+      <dt>average contributions per contributed:</dt>
+      <dd><%= @all_contributions.average_contributions_per_contributed_months %></dd>
+
+      <dt>max streaks:</dt>
+      <dd><%= @all_contributions.max_streaks_by_month %></dd>
+
+      <% distribution, thresholds = @all_contributions.streak_by_month_distribution %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+    </dl>
+  </section>
+
+  <section>
+    <h3>by year</h3>
+    <dl class="flex">
+      <dt>max contributions:</dt>
+      <dd><%= @all_contributions.max_contributions_by_year %></dd>
+
+      <% distribution, thresholds = @all_contributions.contribution_by_year_distribution %>
+      <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+      <dt>contributed:</dt>
+      <dd><%= @all_contributions.contributed_years %></dd>
+
+      <dt>average contributions per contributed:</dt>
+      <dd><%= @all_contributions.average_contributions_per_contributed_years %></dd>
+
+      <dt>max streaks:</dt>
+      <dd><%= @all_contributions.max_streaks_by_year %></dd>
+
+      <% distribution, thresholds = @all_contributions.streak_by_year_distribution %>
+      <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+    </dl>
+  </section>
+</section>
+
+<% @years.each do |year| %>
+  <section id="<%= year%>_contributions">
+    <h2><%= year %> contributions statistics</h2>
+
+    <div class="heatmap" id="cal-heatmap-<%= year %>"></div>
+
+    <section>
+      <dl class="flex">
+        <dt>total contributions:</dt>
+        <dd><%= @contributions_by_years[year].total_contributions %></dd>
+      </dl>
+    </section>
+
+    <section>
+      <h3>by day</h3>
+      <dl class="flex">
+        <dt>max contributions:</dt>
+        <dd><%= @contributions_by_years[year].max_contributions_by_day %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].contribution_by_day_distribution %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+        <dt>contributed:</dt>
+        <dd><%= @contributions_by_years[year].contributed_days %></dd>
+
+        <dt>average contributions per contributed:</dt>
+        <dd><%= @contributions_by_years[year].average_contributions_per_contributed_days %></dd>
+
+        <dt>max streaks:</dt>
+        <dd><%= @contributions_by_years[year].max_streaks_by_day %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].streak_by_day_distribution %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+      </dl>
+    </section>
+
+    <section>
+      <h3>by week</h3>
+      <dl class="flex">
+        <dt>max contributions:</dt>
+        <dd><%= @contributions_by_years[year].max_contributions_by_week %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].contribution_by_week_distribution %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+        <dt>contributed:</dt>
+        <dd><%= @contributions_by_years[year].contributed_weeks %></dd>
+
+        <dt>average contributions per contributed:</dt>
+        <dd><%= @contributions_by_years[year].average_contributions_per_contributed_weeks %></dd>
+
+        <dt>max streaks:</dt>
+        <dd><%= @contributions_by_years[year].max_streaks_by_week %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].streak_by_week_distribution %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+      </dl>
+    </section>
+
+    <section>
+      <h3>by month</h3>
+      <dl class="flex">
+        <dt>max contributions:</dt>
+        <dd><%= @contributions_by_years[year].max_contributions_by_month %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].contribution_by_month_distribution %>
+        <%= erb :_distribution, locals: {label: "contributions distribution", distribution: distribution, thresholds: thresholds} %>
+
+        <dt>contributed:</dt>
+        <dd><%= @contributions_by_years[year].contributed_months %></dd>
+
+        <dt>average contributions per contributed:</dt>
+        <dd><%= @contributions_by_years[year].average_contributions_per_contributed_months %></dd>
+
+        <dt>max streaks:</dt>
+        <dd><%= @contributions_by_years[year].max_streaks_by_month %></dd>
+
+        <% distribution, thresholds = @contributions_by_years[year].streak_by_month_distribution %>
+        <%= erb :_distribution, locals: {label: "streaks distribution", distribution: distribution, thresholds: thresholds} %>
+      </dl>
+    </section>
+  </section>
+<% end %>
+<script>
+const years = <%= @years.to_json %>;
+const cal_data = <%=
+  @years.map do|year|
+    [
+      year,
+      @contributions_by_years[year].contributions_by_day
+        .select{|date, count| count != 0}
+        .map{|date, count| {date: date, count: count}}
+    ]
+  end
+  .to_h
+  .to_json
+%>;
+const thresholds = <%=
+  @years.map do |year|
+    distribution, thresholds = @contributions_by_years[year].contribution_by_day_distribution
+    [year, [0] + thresholds.values]
+  end
+  .to_h
+  .to_json
+%>;
+
+const cals = {};
+years.forEach(year => {
+  cals[year] = new CalHeatmap();
+  cals[year].paint({
+    itemSelector: '#cal-heatmap-' + year,
+    domain: {
+      type: 'month',
+      gutter: 2,
+      label: {
+        text: 'MMM',
+        position: 'top',
+        textAlign: 'start'
+      }
+    },
+    subDomain: {
+      type: 'ghDay',
+      gutter: 3,
+      radius: 3
+    },
+    range: 12,
+    date:{
+      start: new Date(Date.UTC(year, 0, 1))
+    },
+    data: {
+      source: cal_data[year],
+      x: 'date',
+      y: 'count'
+    },
+    scale: {
+      color: {
+        type: 'threshold',
+        range: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+        domain: thresholds[year]
+      }
+    }
+  });
+});
+</script>

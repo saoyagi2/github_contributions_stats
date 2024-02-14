@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>GitHub contributions statistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+
+    <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+    h1, h2, h3 {
+      font-weight: normal;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+    h3 {
+      font-size: 1.17em;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+    }
+    dt, dd {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    @media screen and (min-width: 480px) {
+      dl.flex {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      dl.flex dt {
+        width: 40%;
+      }
+      dl.flex dd {
+        width: 10%;
+      }
+    }
+    #container {
+      background-color: rgba(255,255,255);
+    }
+    @media screen and (min-width: 1024px) {
+      #container {
+        width: 100%;
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    #contents {
+      margin: 10px;
+      padding: 10px;
+    }
+    .heatmap {
+      width: 100%;
+      overflow-x: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="contents">
+        <h1>GitHub contributions statistics</h1>
+        <form action="<%= request.env["REQUEST_URI"] %>">
+          <label for="username">GitHub user name:</label>
+          <input type="text" id="username" name="username" value="<%= @username %>">
+          <input type="submit">
+        </form>
+        <% if @username.present? %>
+          <hr>
+          <%= erb :_contributions %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
