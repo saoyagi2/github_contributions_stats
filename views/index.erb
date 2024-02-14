@@ -75,7 +75,7 @@
     <div id="container">
       <div id="contents">
         <h1>GitHub contributions statistics</h1>
-        <form action="/">
+        <form action="<%= request.env["REQUEST_URI"] %>">
           <label for="username">GitHub user name:</label>
           <input type="text" id="username" name="username" value="<%= @username %>">
           <input type="submit">
